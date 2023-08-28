@@ -1,5 +1,5 @@
 # eHealth
-E-Health is an API-based web application that provides a set of endpoints for managing healthcare-related tasks such as user registration, appointment booking, medical record management, and more.
+eHealth is an API-based web application that provides a set of endpoints for managing healthcare-related tasks such as user registration, appointment booking, medical record management, and more.
 # Features
 User Registration and Authentication: Users can register and log in to their accounts. Different user types include health workers and patients.
 
