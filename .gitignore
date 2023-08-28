@@ -1,0 +1,21 @@
+# Ignore secrets and configuration files
+*.pyc
+__pycache__/
+*.sqlite3
+*.env
+
+# Ignore static and media files
+/static/
+/media/
+
+# Ignore virtual environment
+venv/
+.env
+
+# PyCharm-specific
+.idea/
+*.iml
+
+# Ignore log files and temporary files
+*.log
+*.tmp
