@@ -1,4 +1,5 @@
 from django.contrib.auth import authenticate
+from drf_yasg.utils import swagger_auto_schema
 from rest_framework import generics, status
 from rest_framework.response import Response
 
@@ -9,6 +10,7 @@ from authentication import serializers
 class UserCreateView(generics.GenericAPIView):
     serializer_class = serializers.UserCreationSerializer
 
+    @swagger_auto_schema(operation_summary="Create a user account")
     def post(self, request):
         data = request.data
 
@@ -24,6 +26,7 @@ class UserCreateView(generics.GenericAPIView):
 class UserLoginView(generics.GenericAPIView):
     serializer_class = serializers.UserLoginSerializer
 
+    @swagger_auto_schema(operation_summary="user login")
     def post(self, request):
         data = request.data
 

@@ -1,6 +1,7 @@
 from django.utils import timezone
 
 from django.contrib.auth import get_user_model
+from drf_yasg.utils import swagger_auto_schema
 from rest_framework import generics, status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
@@ -17,10 +18,12 @@ class BookAppointmentView(generics.ListCreateAPIView):
     serializer_class = serializers.BookAppointmentSerializer
     permission_classes = [IsAuthenticated]
 
+    @swagger_auto_schema(operation_summary="List all appointments for a patient")
     def get_queryset(self):
         appointments = Appointment.objects.all()
         return appointments
 
+    @swagger_auto_schema(operation_summary="Book an appointment for a user")
     def perform_create(self, serializer):
         user = self.request.user
         doctor = serializer.validated_data['doctor']
@@ -53,6 +56,7 @@ class DoctorAppointmentView(generics.ListAPIView):
     serializer_class = serializers.BookAppointmentSerializer
     permission_classes = [IsAuthenticated]
 
+    @swagger_auto_schema(operation_summary="List all appointments for a doctor")
     def get_queryset(self):
         user = self.request.user
 
@@ -67,6 +71,7 @@ class DoctorDecisionView(generics.UpdateAPIView):
     serializer_class = serializers.DoctorAppointmentSerializer
     permission_classes = [IsAuthenticated]
 
+    @swagger_auto_schema(operation_summary="Accepting or rejecting an appointment")
     def update(self, request, *args, **kwargs):
         instance = self.get_object()
         serializer = self.get_serializer(instance, data=request.data, partial=True)
@@ -98,6 +103,7 @@ class DoctorDecisionView(generics.UpdateAPIView):
 class DoctorDashboardView(generics.RetrieveAPIView):
     permission_classes = [IsAuthenticated]
 
+    @swagger_auto_schema(operation_summary="Doctor's dashboard for viewing appointment information for the month")
     def get(self, request, *args, **kwargs):
         user = request.user
         current_month = timezone.now().month
