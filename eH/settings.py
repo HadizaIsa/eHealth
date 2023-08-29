@@ -30,8 +30,8 @@ INSTALLED_APPS = [
     'authentication.apps.AuthenticationConfig',
     'medicalinformation.apps.MedicalinfoConfig',
     'appointment.apps.AppointmentConfig',
-
     'rest_framework',
+    'drf_yasg'
 
 ]
 
